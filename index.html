@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Binary Calculator | COA Project</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+<body>
+
+<div class="main-container">
+
+    <header>
+        <div class="logo">01</div>
+        <div>
+            <h1>Binary Calculator</h1>
+            <p>Computer Organization & Architecture</p>
+        </div>
+        <span class="status">● SYSTEM READY</span>
+    </header>
+
+    <div class="content">
+
+        <section class="calculator">
+            <div class="section-heading">
+                <div>
+                    <span class="tag">CALCULATOR</span>
+                    <h2>Number Operations</h2>
+                </div>
+                <span class="chip">BASE CONVERTER</span>
+            </div>
+
+            <div class="input-grid">
+                <div class="field">
+                    <label>FIRST NUMBER</label>
+                    <input id="num1" type="text"
+                        placeholder="Enter first number" value="1010">
+                </div>
+
+                <div class="field">
+                    <label>SECOND NUMBER</label>
+                    <input id="num2" type="text"
+                        placeholder="Enter second number" value="0011">
+                </div>
+            </div>
+
+            <div class="select-grid">
+                <div class="field">
+                    <label>INPUT NUMBER SYSTEM</label>
+                    <select id="inputBase">
+                        <option value="2">Binary (Base 2)</option>
+                        <option value="10">Decimal (Base 10)</option>
+                        <option value="8">Octal (Base 8)</option>
+                        <option value="16">Hexadecimal (Base 16)</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>OPERATION</label>
+                    <select id="operation">
+                        <option value="add">Addition (+)</option>
+                        <option value="sub">Subtraction (-)</option>
+                        <option value="mul">Multiplication (×)</option>
+                        <option value="div">Division (÷)</option>
+                        <option value="and">Bitwise AND</option>
+                        <option value="or">Bitwise OR</option>
+                        <option value="xor">Bitwise XOR</option>
+                        <option value="lshift">Left Shift (<<)</option>
+                        <option value="rshift">Right Shift (>>)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="field">
+                <label>RESULT NUMBER SYSTEM</label>
+                <select id="outputBase">
+                    <option value="2">Binary (Base 2)</option>
+                    <option value="10">Decimal (Base 10)</option>
+                    <option value="8">Octal (Base 8)</option>
+                    <option value="16">Hexadecimal (Base 16)</option>
+                </select>
+            </div>
+
+            <div class="button-group">
+                <button class="calculate-btn" onclick="calculate()">
+                    Calculate Result →
+                </button>
+                <button class="swap-btn" onclick="swapNumbers()">⇄</button>
+                <button class="clear-btn" onclick="clearAll()">Clear</button>
+            </div>
+
+            <div id="error" class="error"></div>
+
+            <div class="result-box">
+                <div class="result-top">
+                    <span>CALCULATION RESULT</span>
+                    <span class="live">● LIVE RESULT</span>
+                </div>
+                <h2 id="result">1010</h2>
+                <div class="result-bottom">
+                    <span id="resultBaseLabel">BINARY</span>
+                    <button onclick="copyResult()">Copy Result</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="conversion">
+            <div class="section-heading">
+                <div>
+                    <span class="tag">CONVERSION</span>
+                    <h2>Number System Overview</h2>
+                </div>
+            </div>
+
+            <p class="description">
+                Your calculation result in all four number systems.
+            </p>
+
+            <div class="conversion-grid">
+                <div class="conversion-card">
+                    <span>01 / BINARY</span>
+                    <h3 id="binaryResult">1010</h3>
+                </div>
+
+                <div class="conversion-card">
+                    <span>02 / DECIMAL</span>
+                    <h3 id="decimalResult">10</h3>
+                </div>
+
+                <div class="conversion-card">
+                    <span>03 / OCTAL</span>
+                    <h3 id="octalResult">12</h3>
+                </div>
+
+                <div class="conversion-card">
+                    <span>04 / HEXADECIMAL</span>
+                    <h3 id="hexResult">A</h3>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>ADVANCED BINARY CALCULATOR | MCA COA PROJECT</p>
+        <p>Designed using HTML, CSS & JavaScript</p>
+    </footer>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
