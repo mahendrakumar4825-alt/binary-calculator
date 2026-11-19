@@ -1,8 +1,11 @@
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -10,10 +13,17 @@ body {
     background: #080f1e;
     color: #ffffff;
     min-height: 100vh;
-    padding: 35px 15px;
+    min-height: 100dvh;
+    padding: clamp(10px, 3vw, 35px) clamp(10px, 2vw, 15px);
+}
+
+img, svg {
+    max-width: 100%;
+    height: auto;
 }
 
 .main-container {
+    width: 100%;
     max-width: 1050px;
     margin: auto;
     background: #101b30;
@@ -26,8 +36,9 @@ body {
 header {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: 15px;
-    padding: 25px 35px;
+    padding: clamp(18px, 3vw, 25px) clamp(18px, 3.5vw, 35px);
     border-bottom: 1px solid #293950;
 }
 
@@ -38,10 +49,11 @@ header {
     font-weight: bold;
     padding: 13px;
     border-radius: 10px;
+    flex-shrink: 0;
 }
 
 header h1 {
-    font-size: 25px;
+    font-size: clamp(18px, 3vw, 25px);
 }
 
 header p {
@@ -58,13 +70,13 @@ header p {
 }
 
 .content {
-    padding: 35px;
+    padding: clamp(18px, 3.5vw, 35px);
 }
 
 .calculator, .conversion {
     background: #14223a;
     border: 1px solid #293c59;
-    padding: 27px;
+    padding: clamp(18px, 3vw, 27px);
     border-radius: 14px;
     margin-bottom: 25px;
 }
@@ -73,6 +85,8 @@ header p {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 25px;
 }
 
@@ -84,7 +98,7 @@ header p {
 }
 
 .section-heading h2 {
-    font-size: 21px;
+    font-size: clamp(17px, 2.5vw, 21px);
     margin-top: 7px;
 }
 
@@ -98,12 +112,13 @@ header p {
 
 .input-grid, .select-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
 }
 
 .field {
     margin-bottom: 20px;
+    min-width: 0;
 }
 
 .field label {
@@ -117,6 +132,7 @@ header p {
 
 input, select {
     width: 100%;
+    min-width: 0;
     padding: 13px;
     background: #0b1629;
     border: 1px solid #344b69;
@@ -132,6 +148,7 @@ input:focus, select:focus {
 
 .button-group {
     display: flex;
+    flex-wrap: wrap;
     gap: 12px;
     margin: 5px 0 22px;
 }
@@ -142,10 +159,11 @@ button {
     border-radius: 7px;
     padding: 13px 18px;
     font-weight: bold;
+    min-height: 44px; /* touch-friendly tap target */
 }
 
 .calculate-btn {
-    flex: 1;
+    flex: 1 1 160px;
     background: #00c9d8;
     color: #061323;
     font-size: 14px;
@@ -170,13 +188,15 @@ button {
     background: linear-gradient(120deg, #0c263e, #10334b);
     border: 1px solid #087d99;
     border-radius: 10px;
-    padding: 23px;
+    padding: clamp(16px, 3vw, 23px);
 }
 
 .result-top, .result-bottom {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .result-top {
@@ -190,10 +210,11 @@ button {
 }
 
 #result {
-    font-size: clamp(24px, 5vw, 36px);
+    font-size: clamp(22px, 5vw, 36px);
     color: #00e0ee;
     margin: 20px 0;
     overflow-wrap: anywhere;
+    word-break: break-word;
 }
 
 .result-bottom {
@@ -222,7 +243,7 @@ button {
 
 .conversion-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 15px;
 }
 
@@ -242,7 +263,7 @@ button {
 
 .conversion-card h3 {
     color: #00d5e5;
-    font-size: 21px;
+    font-size: clamp(17px, 2.5vw, 21px);
     margin-top: 12px;
     overflow-wrap: anywhere;
 }
@@ -263,20 +284,36 @@ footer {
     letter-spacing: 1px;
 }
 
-@media(max-width: 650px) {
+
+@media (max-width: 900px) {
+    .main-container {
+        border-radius: 14px;
+    }
+
+    .input-grid, .select-grid {
+        gap: 15px;
+    }
+}
+
+
+@media (max-width: 650px) {
     body {
         padding: 10px;
+    }
+
+    .main-container {
+        border-radius: 12px;
     }
 
     header, .content {
         padding: 20px;
     }
 
-    header h1 {
-        font-size: 19px;
+    .status {
+        display: none;
     }
 
-    .status {
+    .chip {
         display: none;
     }
 
@@ -293,7 +330,61 @@ footer {
         padding: 18px;
     }
 
-    .chip {
-        display: none;
+    input, select {
+        font-size: 16px;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .button-group button {
+        width: 100%;
+        flex: none;
+    }
+
+    .result-bottom {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .result-bottom button {
+        width: 100%;
+    }
+
+    .description {
+        margin-top: -8px;
+    }
+}
+
+@media (max-width: 380px) {
+    header {
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 19px;
+        padding: 10px;
+    }
+
+    header p {
+        font-size: 12px;
+    }
+
+    .conversion-card {
+        padding: 15px;
+    }
+
+    footer {
+        letter-spacing: 0;
+        padding: 16px 12px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        transition: none !important;
+        animation: none !important;
     }
 }
